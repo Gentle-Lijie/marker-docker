@@ -5,14 +5,16 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends --fix-missing \
     gcc \
     g++ \
     git \
     libgl1-mesa-glx \
     libglib2.0-0 \
     libgomp1 \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* && \
+    apt-get clean
 
 # Install Poetry
 RUN pip install --no-cache-dir poetry==1.7.1
