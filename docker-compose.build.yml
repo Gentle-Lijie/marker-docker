@@ -1,0 +1,16 @@
+# Docker Compose configuration for local development with build from source
+# Use this file when you want to build the image locally instead of using the pre-built image
+# 
+# Usage:
+#   docker compose -f docker-compose.build.yml up -d
+#
+# Or combine with the main docker-compose.yml:
+#   docker compose -f docker-compose.yml -f docker-compose.build.yml up -d
+
+services:
+  marker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: marker-pdf:latest
+    # All other configurations are inherited from docker-compose.yml

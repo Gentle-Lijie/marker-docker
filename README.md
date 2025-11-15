@@ -76,6 +76,32 @@ If you want to use marker on documents other than PDFs, you will need to install
 pip install marker-pdf[full]
 ```
 
+# Docker Deployment
+
+For quick deployment using Docker, you can use the automated setup script:
+
+## Quick Start with Docker
+
+```shell
+# Automated setup with quick start script (easiest)
+git clone https://github.com/Gentle-Lijie/marker-docker.git
+cd marker-docker
+./quick-start.sh
+
+# Or using docker-compose
+docker compose up -d
+
+# Or using pre-built image from GitHub Container Registry
+docker pull ghcr.io/gentle-lijie/marker-docker:latest
+docker run -d -p 8000:8000 --name marker-server ghcr.io/gentle-lijie/marker-docker:latest
+```
+
+Access the API at `http://localhost:8000` and view the interactive docs at `http://localhost:8000/docs`.
+
+**Documentation:**
+- [README.Docker.md](README.Docker.md) - Detailed Docker deployment guide (GPU support, configuration, troubleshooting)
+- [README.Portainer.md](README.Portainer.md) - Portainer deployment guide (使用 Portainer 部署指南)
+
 # Usage
 
 First, some configuration:
