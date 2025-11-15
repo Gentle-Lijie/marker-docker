@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  marker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: marker-pdf:latest
+    container_name: marker-server
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount volumes for uploads and outputs
+      - ./uploads:/app/uploads
+      - ./outputs:/app/outputs
+    environment:
+      # Default to CPU, can be overridden
+      - TORCH_DEVICE=cpu
+      # Optional: Add your API keys here or use .env file
+      # - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      # - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+    restart: unless-stopped
+    # Uncomment for GPU support (requires nvidia-docker)
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
