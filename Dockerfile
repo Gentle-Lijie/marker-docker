@@ -33,9 +33,8 @@ RUN poetry install --no-interaction --no-ansi --only-root
 # Create directories for uploads and outputs
 RUN mkdir -p /app/uploads /app/outputs
 
-# Copy and setup entrypoint script
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+# Setup entrypoint script
+RUN cp docker-entrypoint.sh /usr/local/bin/ && chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # Expose port for FastAPI server
 EXPOSE 8000
@@ -46,7 +45,7 @@ ENV TORCH_DEVICE=cpu
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
-    CMD python -c "import requests; requests.get('http://localhost:8000/', timeout=5)" || exit 1
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/', timeout=5)" || exit 1
 
 # Set entrypoint
 ENTRYPOINT ["docker-entrypoint.sh"]
