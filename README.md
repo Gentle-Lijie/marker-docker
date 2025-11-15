@@ -364,6 +364,7 @@ All output formats will return a metadata dictionary, with the following fields:
         "title": "Introduction",
         "heading_level": 1,
         "page_id": 0,
+See `README.docker.md` for instructions on building and running `marker` in a Docker container.
         "polygon": [...]
       }
     ], // computed PDF table of contents
