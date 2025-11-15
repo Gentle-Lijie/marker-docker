@@ -2,6 +2,8 @@
 
 This guide explains how to deploy the Marker PDF converter using Docker for one-click deployment.
 
+> **💡 Using Portainer?** Check out our [Portainer Deployment Guide](README.Portainer.md) for step-by-step instructions with screenshots.
+
 ## Quick Start with Docker
 
 ### Option 1: Using Quick Start Script (Easiest)
