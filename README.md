@@ -78,13 +78,18 @@ pip install marker-pdf[full]
 
 # Docker Deployment
 
-For quick deployment using Docker, you can use the pre-built image or build it yourself:
+For quick deployment using Docker, you can use the automated setup script:
 
 ## Quick Start with Docker
 
 ```shell
-# Using docker-compose (recommended)
-docker-compose up -d
+# Automated setup with quick start script (easiest)
+git clone https://github.com/Gentle-Lijie/marker-docker.git
+cd marker-docker
+./quick-start.sh
+
+# Or using docker-compose
+docker compose up -d
 
 # Or using pre-built image from GitHub Container Registry
 docker pull ghcr.io/gentle-lijie/marker-docker:latest

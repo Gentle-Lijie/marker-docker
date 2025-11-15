@@ -4,7 +4,24 @@ This guide explains how to deploy the Marker PDF converter using Docker for one-
 
 ## Quick Start with Docker
 
-### Option 1: Using Docker Compose (Recommended)
+### Option 1: Using Quick Start Script (Easiest)
+
+The quick start script automates the setup process:
+
+```bash
+git clone https://github.com/Gentle-Lijie/marker-docker.git
+cd marker-docker
+./quick-start.sh
+```
+
+This script will:
+- Check Docker installation
+- Create necessary directories
+- Set up environment configuration
+- Offer to pull pre-built image or build locally
+- Start the server automatically
+
+### Option 2: Using Docker Compose
 
 1. Clone the repository:
 ```bash
@@ -12,21 +29,27 @@ git clone https://github.com/Gentle-Lijie/marker-docker.git
 cd marker-docker
 ```
 
-2. Start the service:
+2. (Optional) Copy and edit the environment file:
 ```bash
-docker-compose up -d
+cp .env.example .env
+# Edit .env to add your API keys if needed
 ```
 
-3. Access the API at `http://localhost:8000`
+3. Start the service:
+```bash
+docker compose up -d
+```
+
+4. Access the API at `http://localhost:8000`
    - API docs: `http://localhost:8000/docs`
    - Health check: `http://localhost:8000/`
 
-4. Stop the service:
+5. Stop the service:
 ```bash
-docker-compose down
+docker compose down
 ```
 
-### Option 2: Using Pre-built Image from GitHub Container Registry
+### Option 3: Using Pre-built Image from GitHub Container Registry
 
 Pull and run the pre-built image:
 
@@ -35,7 +58,7 @@ docker pull ghcr.io/gentle-lijie/marker-docker:latest
 docker run -d -p 8000:8000 --name marker-server ghcr.io/gentle-lijie/marker-docker:latest
 ```
 
-### Option 3: Building from Source
+### Option 4: Building from Source
 
 Build the Docker image locally:
 
