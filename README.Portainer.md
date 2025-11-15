@@ -254,6 +254,41 @@ with open("document.pdf", "rb") as f:
 
 ## 故障排除 / Troubleshooting
 
+### 部署错误：找不到 Dockerfile
+
+**错误信息：**
+```
+failed to deploy a stack: marker Pulling marker Error failed to solve: 
+rpc error: code = Unknown desc = failed to solve with frontend dockerfile.v0: 
+failed to read dockerfile: open /volume2/@docker/tmp/buildkit-mount.../Dockerfile: 
+no such file or directory
+```
+
+**原因：** 使用了包含 `build` 指令的配置，但 Portainer 环境中没有源代码。
+
+**解决方法：**
+
+1. **确保使用正确的配置**（推荐）：
+   - 使用本指南中提供的 Stack 配置（第27-59行）
+   - 确认配置中使用的是 `image: ghcr.io/gentle-lijie/marker-docker:latest`
+   - **不要**包含 `build:` 指令
+
+2. **如果复制了本地 docker-compose.yml 文件**：
+   - 删除或注释掉 `build:` 部分
+   - 使用 `image: ghcr.io/gentle-lijie/marker-docker:latest` 替代
+
+正确的配置示例：
+```yaml
+services:
+  marker:
+    image: ghcr.io/gentle-lijie/marker-docker:latest  # 使用预构建镜像
+    # 不要包含 build: 部分
+    container_name: marker-server
+    ports:
+      - "8000:8000"
+    # ... 其他配置
+```
+
 ### 容器无法启动
 
 1. 检查日志中的错误信息

@@ -39,7 +39,11 @@ cp .env.example .env
 
 3. Start the service:
 ```bash
+# Uses pre-built image from GitHub Container Registry (recommended)
 docker compose up -d
+
+# Or build from source locally (for development):
+docker compose -f docker-compose.build.yml up -d
 ```
 
 4. Access the API at `http://localhost:8000`
@@ -50,6 +54,8 @@ docker compose up -d
 ```bash
 docker compose down
 ```
+
+**Note:** The default `docker-compose.yml` uses the pre-built image from `ghcr.io`. For local development with source code builds, use `docker-compose.build.yml`.
 
 ### Option 3: Using Pre-built Image from GitHub Container Registry
 

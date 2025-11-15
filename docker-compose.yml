@@ -1,9 +1,14 @@
 services:
   marker:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: marker-pdf:latest
+    # Use pre-built image from GitHub Container Registry
+    image: ghcr.io/gentle-lijie/marker-docker:latest
+    
+    # For local development, uncomment the build section and comment out the image above:
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    # image: marker-pdf:latest
+    
     container_name: marker-server
     ports:
       - "8000:8000"
